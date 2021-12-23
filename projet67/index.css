@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+th{
+    width: 50px;
+}
+body{
+    font-size: 200%;
+    background-color: rgb(77, 73, 73);
+    color: white;
+}
+input{
+    height: 30px;
+    width: 200px;
+    border-radius: 10px;
+    border: rgb(0, 0, 0) 3px solid;
+}
+form{
+     text-align: center;
+}
+
+#type-input{
+    font-size: 60%;
+}
+#type-input input {
+    width: 50px;
+    height: 20px;
+  
+}
+table{
+    margin-left: 15%;
+}
+button{
+    background-color: black;
+    color: blanchedalmond;
+    height: 30px;
+    width: 60px;
+}
+label{
+    color: rgb(253, 253, 253);
+}
+
+

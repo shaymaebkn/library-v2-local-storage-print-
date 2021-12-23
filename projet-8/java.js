@@ -6,12 +6,11 @@ var langue = document.getElementById('langue');
 var types = document.querySelectorAll('input[name="Selectionner"]');
 var formulaire = document.getElementById('form');
 var errors = document.getElementsByClassName("error");
+
 const roman = document.getElementById('Roman');
 const essai = document.getElementById('Essai');
 const bande = document.getElementById('Bande-Dessinée');
 const test = document.querySelector('.test');
-
-
 
 var tableau = document.getElementsByTagName('table')[0];
 var ChangerBtn = document.getElementById('changerBtn');
@@ -21,9 +20,7 @@ var validation_ok = true;
 var parag = document.getElementById('h1');
 
 var storage = JSON.parse(localStorage.getItem("tableau")) ?? [];
-
-
-
+//get item local storage 
 const markup = ` ${storage.map((s)=>{
 
   return `<tr>
@@ -44,28 +41,11 @@ const markup = ` ${storage.map((s)=>{
  
 }
 `
-
-
-
 test.insertAdjacentHTML('beforeend', markup);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 var allBookNames = [];
 ////////////////////////////::
-// console.log(storage,'ffff');
 formulaire.addEventListener('submit', function eVent(e) {
   e.preventDefault();
   var validation_ok = true;
