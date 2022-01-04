@@ -8,13 +8,14 @@ body{
     color: white;
     font-size: 150%;
     background-size: cover;
+    width: 100%;
 }
 #form{
     background-color: rgb(36, 35, 35);
     /* height: 800px; */
     opacity: 0.8;
     text-align: center;
-    margin: 0 20% 0 20%;
+    /* margin: 0 20% 0 20%; */
     
 }
 input{
@@ -61,10 +62,8 @@ img{
 table{
     background-color: rgb(36, 35, 35);
     border-collapse: collapse;
-    
-   
     opacity: 0.8;
-    margin: 0 20%;
+    /* margin: 0 20%; */
     text-align: center;
     
 }
@@ -80,8 +79,11 @@ th{
     text-transform: uppercase;
 }
 #print{
-   margin: 0 60% 10%;
-   width: 200px;
-   height: 30px;
-   font-size: large;
+    margin-left: 40%;
+    margin-bottom: 5%;
+    width: 200px;
+    height: 30px;
+    font-size: large;
+    background-color: brown;
+  
 }
