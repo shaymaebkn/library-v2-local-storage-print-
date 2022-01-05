@@ -4,6 +4,8 @@ var prix = document.getElementById('prix');
 var date = document.getElementById('date-de-publication');
 var langue = document.getElementById('langue');
 var types = document.querySelectorAll('input[name="Selectionner"]');
+var email = document.getElementById('email');
+
 var formulaire = document.getElementById('form');
 var errors = document.getElementsByClassName("error");
 
@@ -20,6 +22,7 @@ var validation_ok = true;
 var parag = document.getElementById('h1');
 
 var storage = JSON.parse(localStorage.getItem("tableau")) ?? [];
+
 //get item local storage 
 const markup = ` ${storage.map((s)=>{
 
@@ -30,6 +33,8 @@ const markup = ` ${storage.map((s)=>{
                       <td>${s.langue}</td>
                       <td>${s.date}</td>
                       <td>${s.types}</td>
+                      <td>${s.email}</td>
+
                       <td><button onclick="btnEdit(this)"class="btn">Editer</button><button onclick="btnSupr(this)"  class="btn"  id="btn2">Supprimer</button> </td>
                       
 
@@ -160,6 +165,18 @@ formulaire.addEventListener('submit', function eVent(e) {
       break;
     }
   }
+  // email validation 
+  if (email.value == "") {
+    validation_ok = false;
+    errors[6].innerHTML = "Ce champ est OBLIGATOIRE";
+    errors[6].style.color = 'red';
+    date.style.borderColor = "red"
+  }
+  else {
+    date.style.borderColor = "#1a7fe9"
+    errors[6].innerHTML = "";
+  };
+  
 
 
   // class ouvrage 
@@ -204,20 +221,21 @@ formulaire.addEventListener('submit', function eVent(e) {
     ligne.insertCell(3).innerHTML = date.value;
     ligne.insertCell(4).innerHTML = langue.options[langue.selectedIndex].value;
     ligne.insertCell(5).innerHTML = type.value;
-    ligne.insertCell(6).innerHTML = '<button onclick="btnEdit(this)"class="btn">Editer</button>' + '<button onclick="btnSupr(this)"  class="btn"  id="btn2">Supprimer</button>';
+    ligne.insertCell(6).innerHTML = type.value;
+    ligne.insertCell(7).innerHTML = '<button onclick="btnEdit(this)"class="btn">Editer</button>' + '<button onclick="btnSupr(this)"  class="btn"  id="btn2">Supprimer</button>';
     
     
     
     function localstorage(){
 
         storage.push({
-        titre : titre.value,
-        auteur : auteur.value,
-        prix : prix.value,
-        date : date.value,
-        langue: langue.value,
-        types:type.value,
-        email: email.value
+          titre : titre.value,
+          auteur : auteur.value,
+          prix : prix.value,
+          date : date.value,
+          langue: langue.value,
+          types:type.value,
+          email: email.value
 
       })
       localStorage.setItem("tableau",JSON.stringify(storage));
@@ -241,6 +259,7 @@ function resetForm() {
   prix.value = "";
   date.value = "";
   langue.value = "";
+  email.value = "";
 }
 
 //  fonction de supprimer un ligne dans le tableau
@@ -261,6 +280,8 @@ function btnEdit(td) {
   prix.value = selectedRow.cells[2].innerHTML;
   date.value = selectedRow.cells[3].innerHTML;
   langue.value = selectedRow.cells[4].innerHTML;
+ 
+
 
   for (var i = 0; i < 3; i++) {
     if (types[i].value == selectedRow.cells[5].innerHTML) {
@@ -269,7 +290,7 @@ function btnEdit(td) {
   }
 
   selectedValue = selectedRow.cells[5].innerHTML;
-
+  selectedRow.cells[6].innerHTML = email.value;
   ChangerBtn.style.display = "block";
   AjouterBtn.style.display = "none";
 
@@ -284,6 +305,8 @@ function btnChanger() {
   selectedRow.cells[2].innerHTML = prix.value;
   selectedRow.cells[3].innerHTML = date.value;
   selectedRow.cells[4].innerHTML = langue.options[langue.selectedIndex].value;
+ 
+
 
   for (var type of types) {
     if (type.checked) {
@@ -292,7 +315,7 @@ function btnChanger() {
   }
 
   selectedRow.cells[5].innerHTML = selectedValue;
-
+  selectedRow.cells[6].innerHTML = email.value;
 
   ChangerBtn.style.display = "none";
   sortTable()
